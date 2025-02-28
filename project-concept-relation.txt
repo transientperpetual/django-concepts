@@ -1,0 +1,21 @@
+Follow chronology if learning from beginning:
+
+gs1 -> Serialization
+gs2 -> Deserialization
+gs3 -> Serialization & Deserialization together
+gs4 -> CRUD (S&D)
+
+
+Validation:
+    1. Field Level Validation : Validation for a single field.
+    2. Object Level Validation: Validation for multiple fields.
+    3. Validators: Validator Functions and Validator Classes can be used to create reusable validating logics.
+
+    Priority:
+    1. Validators
+    2. Field Level Validation
+    3. Object Level Validation
+
+ModelSerializer Class:
+    Automatically generates set of fields and validators that correspond to the Model. Includes create() and update() implementations.
+    
