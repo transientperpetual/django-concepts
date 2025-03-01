@@ -22,7 +22,15 @@ ModelSerializer Class: (pro version of Seralizer class, essentially a wrapper)
 ModelSerializer Validation:
     Show how validation is done on ModelSerializer class. Quite similar to validating Serializer class.
 
-Function based APIView: (pro version of creating views, essentially a wrapper)
-    Manage requests and responses. 
+Function based APIView: (pro version of creating views, essentially a wrapper) (from rest_framework.decorators import api_view)
+    Manage requests and responses cleanly. (less code) 
+
+
+APIView Class:
+    It is a subclass of django's View class -> Provides Requests & Response instances.
+
+Class based APIViews: " "
+
+
 
 
