@@ -16,6 +16,13 @@ Validation:
     2. Field Level Validation
     3. Object Level Validation
 
-ModelSerializer Class:
-    Automatically generates set of fields and validators that correspond to the Model. Includes create() and update() implementations.
-    
+ModelSerializer Class: (pro version of Seralizer class, essentially a wrapper)
+    Automatically generates set of fields that correspond to the Model. Includes create() and update() implementations.
+
+ModelSerializer Validation:
+    Show how validation is done on ModelSerializer class. Quite similar to validating Serializer class.
+
+Function based APIView: (pro version of creating views, essentially a wrapper)
+    Manage requests and responses. 
+
+
