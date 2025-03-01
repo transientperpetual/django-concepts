@@ -33,6 +33,7 @@ class StudentSerializer(serializers.Serializer):
             raise serializers.ValidationError('Seat Full')
         return value
     
+    #Object Level Validation
     #here data is the data that is coming from client, here it is a dictionary.
     def validate(self, data):
         nm = data.get('name')
