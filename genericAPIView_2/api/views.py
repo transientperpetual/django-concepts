@@ -16,7 +16,6 @@ class LCStudentAPI(GenericAPIView, ListModelMixin, CreateModelMixin):
 
 
 
-
 #Retrieve, Update & Destroy can be grouped together as they need pk (primary key).
 class RUDStudentRetrieve(GenericAPIView, RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin):
     queryset = Student.objects.all()

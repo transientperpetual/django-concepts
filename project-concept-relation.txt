@@ -61,7 +61,9 @@ Mixins:
     These mixins can be combined with GenericAPIView to create views with specific behaviors.
 
 Project - concreteViewClass
-    
+    Wrapper around Generic API Views and Mixins (inherits both of these) to further simplify operations in views.
+
+
 
 
 
