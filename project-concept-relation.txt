@@ -1,71 +1,102 @@
-Follow chronology if learning from beginning:
+1️⃣ Serialization & Deserialization
+Serialization → Converts Python objects (models, dicts) into JSON format.
+Deserialization → Converts JSON data back into Python objects.
 
-gs1 -> Serialization
-gs2 -> Deserialization
-gs3 -> Serialization & Deserialization together
-gs4 -> CRUD (S&D)
-
-
-Validation:
-    1. Field Level Validation : Validation for a single field.
-    2. Object Level Validation: Validation for multiple fields.
-    3. Validators: Validator Functions and Validator Classes can be used to create reusable validating logics.
-
-    Priority:
-    1. Validators
-    2. Field Level Validation
-    3. Object Level Validation
-
-ModelSerializer Class: (pro version of Seralizer class, essentially a wrapper)
-    Automatically generates set of fields that correspond to the Model. Includes create() and update() implementations.
-
-ModelSerializer Validation:
-    Show how validation is done on ModelSerializer class. Quite similar to validating Serializer class.
-
-Function based APIView: (pro version of creating views, essentially a wrapper) (from rest_framework.decorators import api_view)
-    Manage requests and responses cleanly. (less code) 
+Usage:
+Use Serializer for manual control over data transformation.
+Use ModelSerializer for automatic field generation from models.
 
 
-APIView Class:
-    It is a subclass of django's View class -> Provides Requests & Response instances.
+2️⃣ CRUD Operations (Serialization & Deserialization)
+Serialization is used for GET (reading data from DB).
+Deserialization is used for POST, PUT, PATCH (writing/updating data in DB).
 
-Class based APIViews: ""
-
-
-Project -> genericAPIView & genericAPIView_2
-Generic APIView:
-    This class extends APIView class, adding commonly required behaviors.
-    Attributes:
-        queryset - The set of objects that this view will operate upon.
-        serializer_class - The class used for validating and deserializing input, and serializing output.
-        lookup_field - The field used to look up individual model instances.
-        lookup_url_kwarg - The URL keyword argument that corresponds to the lookup field.
-        pagination_class - The class used for paginating the results.
-        filter_backends - The list of filter backend classes used for filtering the queryset.
-    Methods:
-        get_queryset(self) - Returns the queryset that will be used to retrieve objects.
-        get_object(self) - Returns the object the view is displaying.
-        get_serializer_class(self) - Returns the class to be used for the serializer.
-        get_serializer_context(self) - Returns the context that will be passed to the serializer.
-        get_serializer() - Returns serializer instance for I/O
-        filter_queryset(self, queryset) - Filters the given queryset.
-
-Mixins:
-    Mixins are reusable classes that provide specific behavior to views.
-    Commonly used mixins include:
-        CreateModelMixin - Provides a method to handle creating objects.
-        RetrieveModelMixin - Provides a method to handle retrieving a single object.
-        UpdateModelMixin - Provides a method to handle updating objects.
-        DestroyModelMixin - Provides a method to handle deleting objects.
-        ListModelMixin - Provides a method to handle listing objects.
-    These mixins can be combined with GenericAPIView to create views with specific behaviors.
-
-Project - concreteViewClass
-    Wrapper around Generic API Views and Mixins (inherits both of these) to further simplify operations in views.
+Usage:
+Use ModelSerializer for automatic CRUD handling.
+Use Serializer for custom object transformations.
 
 
+3️⃣ Validation in DRF
+Field Level Validation → Validates a single field (e.g., min length, unique email).
+Object Level Validation → Validates multiple fields together.
+Validators → Custom reusable validation functions or classes.
+
+Usage:
+Use validators for custom logic that can be reused across serializers.
+Use field-level validation for simple checks (e.g., length).
+Use object-level validation for complex inter-field conditions.
 
 
+4️⃣ ModelSerializer (Advanced Serializer Wrapper)
+ModelSerializer → Auto-generates serializer fields from a Django model.
+Includes:
+create() → Calls Model.objects.create().
+update() → Calls Model.objects.filter(pk=id).update().
+
+Usage:
+Use ModelSerializer when mapping a model to a serializer for CRUD.
+Customize create() and update() methods for custom ORM logic.
+
+
+5️⃣ Function-Based APIView (FBV)
+@api_view decorator simplifies request/response handling.
+Usage:
+
+Use for simple, small APIs where class-based views (CBVs) are overkill.
+
+
+6️⃣ APIView Class (Advanced View Wrapper)
+Subclass of Django’s View class.
+Provides request parsing and response handling.
+
+Usage:
+Use APIView when you need more control than FBVs but want to keep logic structured.
+
+
+7️⃣ GenericAPIView
+Extends APIView, adding reusable behaviors like filtering, pagination, and lookup fields.
+Key Attributes:
+queryset → Defines which model instances to use.
+serializer_class → Defines the serializer for handling data.
+Key Methods:
+get_queryset() → Retrieves data from DB (calls ORM).
+get_object() → Fetches a single object from DB.
+get_serializer() → Returns a serializer instance for validation/serialization.
+
+Usage:
+Use GenericAPIView when needing queryset filtering & pagination.
+Combine with mixins to add specific behaviors (like retrieving/updating objects).
+
+
+8️⃣ Mixins (Reusable View Logic)
+CreateModelMixin → Handles object creation (Model.objects.create()).
+RetrieveModelMixin → Fetches a single object (Model.objects.get()).
+UpdateModelMixin → Updates an object (Model.objects.filter(pk=id).update()).
+DestroyModelMixin → Deletes an object (Model.objects.filter(pk=id).delete()).
+ListModelMixin → Lists objects (Model.objects.all()).
+
+Usage:
+Use mixins to quickly add CRUD operations to views without repeating code.
+Combine with GenericAPIView to build custom API behavior.
+
+
+9️⃣ Concrete View Classes (Prebuilt Views for CRUD)
+Inherits both GenericAPIView & Mixins, providing complete CRUD functionality.
+Examples:
+ListCreateAPIView → GET (list), POST (create).
+RetrieveUpdateDestroyAPIView → GET (retrieve), PUT/PATCH (update), DELETE.
+
+Usage:
+Use when you need full CRUD functionality with minimal code.
+
+
+🔟 ViewSet & ModelViewSet
+ViewSet → Flexible API class where you manually define request handling (list(), retrieve(), etc.).
+ModelViewSet → Auto-handles CRUD operations without extra code.
+
+Usage:
+Use ViewSet for custom behavior (e.g., no delete, custom filtering).
+Use ModelViewSet for standard CRUD (less code, more automation).
 
 
 
