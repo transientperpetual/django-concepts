@@ -29,7 +29,40 @@ Function based APIView: (pro version of creating views, essentially a wrapper) (
 APIView Class:
     It is a subclass of django's View class -> Provides Requests & Response instances.
 
-Class based APIViews: " "
+Class based APIViews: ""
+
+
+Project -> genericAPIView & genericAPIView_2
+Generic APIView:
+    This class extends APIView class, adding commonly required behaviors.
+    Attributes:
+        queryset - The set of objects that this view will operate upon.
+        serializer_class - The class used for validating and deserializing input, and serializing output.
+        lookup_field - The field used to look up individual model instances.
+        lookup_url_kwarg - The URL keyword argument that corresponds to the lookup field.
+        pagination_class - The class used for paginating the results.
+        filter_backends - The list of filter backend classes used for filtering the queryset.
+    Methods:
+        get_queryset(self) - Returns the queryset that will be used to retrieve objects.
+        get_object(self) - Returns the object the view is displaying.
+        get_serializer_class(self) - Returns the class to be used for the serializer.
+        get_serializer_context(self) - Returns the context that will be passed to the serializer.
+        get_serializer() - Returns serializer instance for I/O
+        filter_queryset(self, queryset) - Filters the given queryset.
+
+Mixins:
+    Mixins are reusable classes that provide specific behavior to views.
+    Commonly used mixins include:
+        CreateModelMixin - Provides a method to handle creating objects.
+        RetrieveModelMixin - Provides a method to handle retrieving a single object.
+        UpdateModelMixin - Provides a method to handle updating objects.
+        DestroyModelMixin - Provides a method to handle deleting objects.
+        ListModelMixin - Provides a method to handle listing objects.
+    These mixins can be combined with GenericAPIView to create views with specific behaviors.
+
+Project - concreteViewClass
+    
+
 
 
 
